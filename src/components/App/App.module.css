@@ -1,0 +1,60 @@
+.app {
+  height: 100vh;
+  background: linear-gradient(to right top, #34ace0, #0652dd);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass_card {
+  min-height: 80vh;
+  background-color: white;
+  width: 80%;
+  border-radius: 2rem;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.1)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*
+    Set this element over the others and set a blur effect in the elements are under it
+    */
+  z-index: 2;
+  backdrop-filter: blur(1rem);
+}
+
+.circle_1,
+.circle_2 {
+  background-color: rgb(255, 255, 255);
+  height: 20rem;
+  width: 20rem;
+  /*
+    Set position absolute, because circles are floating elements 
+    */
+  position: absolute;
+  border-radius: 50%;
+}
+
+.circle_1 {
+  top: 5%;
+  left: 6%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(252, 247, 0, 0.9),
+    rgba(229, 255, 0, 0.1)
+  );
+}
+
+.circle_2 {
+  top: 64%;
+  right: 2%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 0, 0, 0.9),
+    rgba(255, 0, 0, 0.1)
+  );
+}

@@ -2,20 +2,22 @@ import React from "react";
 import Board from "../Board/Board";
 import { Props, State, ChipsPositions } from "./types";
 import styles from "./App.module.css";
+import logo from '../../img/Rese_T.png';
 export default class App extends React.PureComponent<Props, State> {
   state: State = {
     chipsPositions: {},
     playerTurn: "red",
-    gameStatus: "It's red's turn"
+    gameStatus: "It's red's turn",
+    resetButtonStatus: "Rese T."
   };
   calculateGameStatus = (playerTurn: string, chipsPositions: ChipsPositions): string => {
     const { columns, rows } = this.props;
     // Check four in a row horizontally
     for (let row = 0; row < rows; row++) {
       let repetitionCountStatus = { playerChip: "", count: 0 };
-    for (let column = 0; column < columns; column++) {
+  
+      for (let column = 0; column < columns; column++) {
         const chip = chipsPositions[`${row}:${column}`];
-        
         // If there is a chip in that position, and belongs
         // to a player, count that chip for that player 
         // (either increase the count or start over)
@@ -60,9 +62,7 @@ export default class App extends React.PureComponent<Props, State> {
     const column = parseInt(tileId.split(":")[1]);
     let lastEmptyTileId = this.getLastEmptyTile(column);
     // If there is no empty tile in the column, do nothing
-    if (!lastEmptyTileId) {
-      return;
-    }
+    if (!lastEmptyTileId) return;
     // Add chip to empty tile
     const newChipsPositions = {
       ...chipsPositions,
@@ -74,18 +74,20 @@ export default class App extends React.PureComponent<Props, State> {
     const gameStatus = this.calculateGameStatus(newPlayerTurn, newChipsPositions);
     // Save new state
     this.setState({ chipsPositions: newChipsPositions, playerTurn: newPlayerTurn, gameStatus });
-    };
+  };
   getLastEmptyTile(column: number) {
     const { rows } = this.props;
     const { chipsPositions } = this.state;
     for (let row = rows - 1; row >= 0; row--) {
       const tileId = `${row}:${column}`;
       
-      if (!chipsPositions[tileId]) {
-        return tileId;
-      }
+      if (!chipsPositions[tileId]) return tileId;
     }
   };
+
+  reset() {
+    this.setState({ chipsPositions: {}, playerTurn: "red", gameStatus: "It's red's turn" });
+  }
   renderBoard() {
     const { columns, rows } = this.props;
     const { chipsPositions } = this.state;
@@ -102,7 +104,17 @@ export default class App extends React.PureComponent<Props, State> {
     const { gameStatus } = this.state;
     return <div className={styles.statusMessage}>{gameStatus}</div>;
   }
+  renderResetButton() {
+    const { resetButtonStatus } = this.state;
+    return (
+      <div className={styles.reseT} onClick={this.reset}>
+        <img className={styles.reseTimg} src={logo} />
+        <p className={styles.reseTtag}>{resetButtonStatus}</p>
+      </div>
+    );
+  }
   render() {
+    this.reset = this.reset.bind(this);
     return (
       <div className={styles.app}>
         <div className={styles.circle1}></div>
@@ -111,6 +123,7 @@ export default class App extends React.PureComponent<Props, State> {
           {this.renderBoard()}
           {this.renderStatusMessage()}
         </div>
+        {this.renderResetButton()}
       </div>
     );
   }

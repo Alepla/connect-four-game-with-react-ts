@@ -22,6 +22,22 @@
   text-transform: uppercase;
 }
 
+.reseT {
+  position: absolute;
+  left: 12%;
+  top: 60%;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.reseTimg {
+  width: 160px;
+}
+
+.reseTtag {
+  text-align: center;
+}
+
 .glassCard {
   min-height: 80vh;
   background-color: white;

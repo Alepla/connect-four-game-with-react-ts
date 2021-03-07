@@ -1,4 +1,4 @@
-![App](./img.png)
+![App](./src/img/img.png)
 
 # connect-four-game-with-react-ts
 

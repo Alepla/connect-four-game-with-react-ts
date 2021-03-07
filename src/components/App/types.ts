@@ -13,4 +13,5 @@ export interface State {
   chipsPositions: ChipsPositions;
   gameStatus: string;
   playerTurn: Player;
+  resetButtonStatus: string;
 }

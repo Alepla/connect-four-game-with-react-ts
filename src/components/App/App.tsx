@@ -105,8 +105,12 @@ export default class App extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className={styles.app}>
-        {this.renderBoard()}
-        {this.renderStatusMessage()}
+        <div className={styles.circle_1}></div>
+        <div className={styles.circle_2}></div>
+        <div className={styles.glass_card}>
+          {this.renderBoard()}
+          {this.renderStatusMessage()}
+        </div>
       </div>
     );
   }
